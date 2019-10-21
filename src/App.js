@@ -1,26 +1,55 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from "react";
+import Navigation from "./Navigation";
+import SortingPanel from "./SortingPanel";
+import SortingShow from "./SortingShow";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      OriginalArray: [],
+      numInArray: 200,
+      speed: 1,
+      initialColor: "black",
+      onCompareColor: "red"
+    };
+    this.handleReset = this.handleReset.bind(this);
+  }
+  componentDidMount() {
+    this.handleReset();
+  }
+
+  handleReset() {
+    const newArray = [];
+    for (let i = 0; i < this.state.numInArray; i++) {
+      newArray.push(randomIntFromInterval(5, 400));
+    }
+    this.setState({
+      OriginalArray: newArray
+    });
+  }
+
+  render() {
+    return (
+      <div className="container">
+        <Navigation />
+        <SortingPanel
+          handleReset={this.handleReset}
+          onCompareColor={this.state.onCompareColor}
+          initialColor={this.state.initialColor}
+          speed={this.state.speed}
+          OriginalArray={this.state.OriginalArray}
+        />
+        <SortingShow OriginalArray={this.state.OriginalArray} />
+      </div>
+    );
+  }
+}
+
+// https://stackoverflow.com/questions/4959975/generate-random-number-between-two-numbers-in-javascript
+function randomIntFromInterval(min, max) {
+  // min and max included
+  return Math.floor(Math.random() * (max - min + 1) + min);
 }
 
 export default App;
