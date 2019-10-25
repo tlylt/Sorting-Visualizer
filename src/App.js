@@ -8,17 +8,25 @@ class App extends Component {
     super(props);
     this.state = {
       OriginalArray: [],
-      numInArray: 200,
-      speed: 1,
+      numInArray: 100,
+      speed: 100,
       initialColor: "black",
-      onCompareColor: "red"
+      onCompareColor: "red",
+      currentAlgo: ""
     };
     this.handleReset = this.handleReset.bind(this);
+    this.handleSetting = this.handleSetting.bind(this);
   }
   componentDidMount() {
     this.handleReset();
   }
-
+  handleSetting(e) {
+    const name = e.target.name;
+    const value = e.target.value;
+    this.setState({
+      [name]: value
+    });
+  }
   handleReset() {
     const newArray = [];
     for (let i = 0; i < this.state.numInArray; i++) {
@@ -28,19 +36,23 @@ class App extends Component {
       OriginalArray: newArray
     });
   }
-
   render() {
     return (
       <div className="container">
-        <Navigation />
+        <Navigation handleSetting={this.handleSetting} />
         <SortingPanel
           handleReset={this.handleReset}
+          handleSetting={this.handleSetting}
+          numInArray={this.state.numInArray}
           onCompareColor={this.state.onCompareColor}
           initialColor={this.state.initialColor}
           speed={this.state.speed}
           OriginalArray={this.state.OriginalArray}
         />
-        <SortingShow OriginalArray={this.state.OriginalArray} />
+        <SortingShow
+          OriginalArray={this.state.OriginalArray}
+          initialColor={this.state.initialColor}
+        />
       </div>
     );
   }
