@@ -7,20 +7,6 @@ class Navigation extends Component {
         <a className="navbar-brand" href="/">
           Sorting Visualizer
         </a>
-        <div>
-          <ul className="navbar-nav">
-            <li className="nav-item">
-              <a className="nav-link" href="/">
-                Merge Sort
-              </a>
-            </li>
-            <li className="nav-item">
-              <a className="nav-link" href="/">
-                Bubble Sort
-              </a>
-            </li>
-          </ul>
-        </div>
       </nav>
     );
   }

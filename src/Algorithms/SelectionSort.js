@@ -1,6 +1,5 @@
+//loop through and places the smallest element at the start
 export function getSelectionSortAnimations(array) {
-  //takes a unsorted array
-  //initiate a new array for record and animation
   const animations = [];
   selectionSort(array, animations);
   return animations;
@@ -11,14 +10,15 @@ function selectionSort(array, animations) {
     let smallest = array[i];
     let smallestIdx = i;
     for (let j = i + 1; j < array.length; j++) {
+      animations.push([smallestIdx, j]);
+      animations.push([smallestIdx, j]);
+      animations.push([0, array[0]]);
+      animations.push([0, array[0]]);
       if (array[j] < smallest) {
+        //updates the smallest element and its index
         smallest = array[j];
         smallestIdx = j;
       }
-      animations.push([smallestIdx, j]);
-      animations.push([smallestIdx, j]);
-      animations.push([i, array[i]]);
-      animations.push([j, array[j]]);
     }
     animations.push([i, smallestIdx]);
     animations.push([i, smallestIdx]);

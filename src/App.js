@@ -8,8 +8,8 @@ class App extends Component {
     super(props);
     this.state = {
       OriginalArray: [],
-      numInArray: 100,
-      speed: 100,
+      numInArray: 75,
+      speed: 1,
       initialColor: "black",
       onCompareColor: "red",
       currentAlgo: ""
@@ -26,6 +26,7 @@ class App extends Component {
     this.setState({
       [name]: value
     });
+    this.handleReset();
   }
   handleReset() {
     const newArray = [];
@@ -39,7 +40,7 @@ class App extends Component {
   render() {
     return (
       <div className="container">
-        <Navigation handleSetting={this.handleSetting} />
+        <Navigation />
         <SortingPanel
           handleReset={this.handleReset}
           handleSetting={this.handleSetting}
