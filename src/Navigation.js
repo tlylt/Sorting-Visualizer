@@ -9,7 +9,10 @@ class Navigation extends Component {
         </a>
         <div className="navbar-nav">
           <div className="nav-item mx-auto">
-            <a className="nav-link " href="/">
+            <a
+              className="nav-link "
+              href="https://github.com/tlylt/Sorting-Visualizer.git"
+            >
               Github Repo
             </a>
           </div>
