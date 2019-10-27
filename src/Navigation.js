@@ -7,9 +7,15 @@ class Navigation extends Component {
         <a className="navbar-brand" href="/">
           Sorting Visualizer
         </a>
+        <div className="navbar-nav">
+          <div className="nav-item mx-auto">
+            <a className="nav-link " href="/">
+              Github Repo
+            </a>
+          </div>
+        </div>
       </nav>
     );
   }
 }
-
 export default Navigation;

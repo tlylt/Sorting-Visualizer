@@ -25,216 +25,231 @@ class SortingPanel extends Component {
     });
     const { onCompareColor, initialColor, speed, OriginalArray } = this.props;
     const arrayBars = document.getElementsByClassName("array-bar");
-    if (sortingAlgo === "quickSortFirst") {
-      const animatingArray = getQuickSortFirstAnimations(OriginalArray);
-      for (let i = 0; i < animatingArray.length; i++) {
-        const colorChange = i % 4 <= 1;
-        if (colorChange) {
-          const [barOneIdx, barTwoIdx] = animatingArray[i];
-          const barOneStyle = arrayBars[barOneIdx].style;
-          const barTwoStyle = arrayBars[barTwoIdx].style;
-          const color = i % 4 === 0 ? onCompareColor : initialColor;
-          setTimeout(() => {
-            barOneStyle.backgroundColor = color;
-            barTwoStyle.backgroundColor = color;
-          }, i * speed);
-        } else {
-          setTimeout(() => {
-            const [barOneIdx, newHeight] = animatingArray[i];
+    switch (sortingAlgo) {
+      case "quickSortFirst": {
+        const animatingArray = getQuickSortFirstAnimations(OriginalArray);
+        for (let i = 0; i < animatingArray.length; i++) {
+          const colorChange = i % 4 <= 1;
+          if (colorChange) {
+            const [barOneIdx, barTwoIdx] = animatingArray[i];
             const barOneStyle = arrayBars[barOneIdx].style;
-            barOneStyle.height = `${newHeight}px`;
-          }, i * speed);
+            const barTwoStyle = arrayBars[barTwoIdx].style;
+            const color = i % 4 === 0 ? onCompareColor : initialColor;
+            setTimeout(() => {
+              barOneStyle.backgroundColor = color;
+              barTwoStyle.backgroundColor = color;
+            }, i * speed);
+          } else {
+            setTimeout(() => {
+              const [barOneIdx, newHeight] = animatingArray[i];
+              const barOneStyle = arrayBars[barOneIdx].style;
+              barOneStyle.height = `${newHeight}px`;
+            }, i * speed);
+          }
         }
+        break;
       }
-    } else if (sortingAlgo === "quickSortLast") {
-      const animatingArray = getQuickSortLastAnimations(OriginalArray);
-      for (let i = 0; i < animatingArray.length; i++) {
-        const colorChange = i % 4 <= 1;
-        if (colorChange) {
-          const [barOneIdx, barTwoIdx] = animatingArray[i];
-          const barOneStyle = arrayBars[barOneIdx].style;
-          const barTwoStyle = arrayBars[barTwoIdx].style;
-          const color = i % 4 === 0 ? onCompareColor : initialColor;
-          setTimeout(() => {
-            barOneStyle.backgroundColor = color;
-            barTwoStyle.backgroundColor = color;
-          }, i * speed);
-        } else {
-          setTimeout(() => {
-            const [barOneIdx, newHeight] = animatingArray[i];
+      case "quickSortLast": {
+        const animatingArray = getQuickSortLastAnimations(OriginalArray);
+        for (let i = 0; i < animatingArray.length; i++) {
+          const colorChange = i % 4 <= 1;
+          if (colorChange) {
+            const [barOneIdx, barTwoIdx] = animatingArray[i];
             const barOneStyle = arrayBars[barOneIdx].style;
-            barOneStyle.height = `${newHeight}px`;
-          }, i * speed);
+            const barTwoStyle = arrayBars[barTwoIdx].style;
+            const color = i % 4 === 0 ? onCompareColor : initialColor;
+            setTimeout(() => {
+              barOneStyle.backgroundColor = color;
+              barTwoStyle.backgroundColor = color;
+            }, i * speed);
+          } else {
+            setTimeout(() => {
+              const [barOneIdx, newHeight] = animatingArray[i];
+              const barOneStyle = arrayBars[barOneIdx].style;
+              barOneStyle.height = `${newHeight}px`;
+            }, i * speed);
+          }
         }
+        break;
       }
-    } else if (sortingAlgo === "slowSort") {
-      const animatingArray = getSlowSortAnimations(OriginalArray);
-      for (let i = 0; i < animatingArray.length; i++) {
-        const colorChange = i % 4 <= 1;
-        if (colorChange) {
-          const [barOneIdx, barTwoIdx] = animatingArray[i];
-          const barOneStyle = arrayBars[barOneIdx].style;
-          const barTwoStyle = arrayBars[barTwoIdx].style;
-          const color = i % 4 === 0 ? onCompareColor : initialColor;
-          setTimeout(() => {
-            barOneStyle.backgroundColor = color;
-            barTwoStyle.backgroundColor = color;
-          }, i * speed);
-        } else {
-          setTimeout(() => {
-            const [barOneIdx, newHeight] = animatingArray[i];
+      case "slowSort": {
+        const animatingArray = getSlowSortAnimations(OriginalArray);
+        for (let i = 0; i < animatingArray.length; i++) {
+          const colorChange = i % 4 <= 1;
+          if (colorChange) {
+            const [barOneIdx, barTwoIdx] = animatingArray[i];
             const barOneStyle = arrayBars[barOneIdx].style;
-            barOneStyle.height = `${newHeight}px`;
-          }, i * speed);
+            const barTwoStyle = arrayBars[barTwoIdx].style;
+            const color = i % 4 === 0 ? onCompareColor : initialColor;
+            setTimeout(() => {
+              barOneStyle.backgroundColor = color;
+              barTwoStyle.backgroundColor = color;
+            }, i * speed);
+          } else {
+            setTimeout(() => {
+              const [barOneIdx, newHeight] = animatingArray[i];
+              const barOneStyle = arrayBars[barOneIdx].style;
+              barOneStyle.height = `${newHeight}px`;
+            }, i * speed);
+          }
         }
+        break;
       }
-    } else if (sortingAlgo === "cocktailSort") {
-      const animatingArray = getCocktailSortAnimations(OriginalArray);
-      for (let i = 0; i < animatingArray.length; i++) {
-        const colorChange = i % 4 <= 1;
-        if (colorChange) {
-          const [barOneIdx, barTwoIdx] = animatingArray[i];
-          const barOneStyle = arrayBars[barOneIdx].style;
-          const barTwoStyle = arrayBars[barTwoIdx].style;
-          const color = i % 4 === 0 ? onCompareColor : initialColor;
-          setTimeout(() => {
-            barOneStyle.backgroundColor = color;
-            barTwoStyle.backgroundColor = color;
-          }, i * speed);
-        } else {
-          setTimeout(() => {
-            const [barOneIdx, newHeight] = animatingArray[i];
+      case "cocktailSort":{
+        const animatingArray = getCocktailSortAnimations(OriginalArray);
+        for (let i = 0; i < animatingArray.length; i++) {
+          const colorChange = i % 4 <= 1;
+          if (colorChange) {
+            const [barOneIdx, barTwoIdx] = animatingArray[i];
             const barOneStyle = arrayBars[barOneIdx].style;
-            barOneStyle.height = `${newHeight}px`;
-          }, i * speed);
+            const barTwoStyle = arrayBars[barTwoIdx].style;
+            const color = i % 4 === 0 ? onCompareColor : initialColor;
+            setTimeout(() => {
+              barOneStyle.backgroundColor = color;
+              barTwoStyle.backgroundColor = color;
+            }, i * speed);
+          } else {
+            setTimeout(() => {
+              const [barOneIdx, newHeight] = animatingArray[i];
+              const barOneStyle = arrayBars[barOneIdx].style;
+              barOneStyle.height = `${newHeight}px`;
+            }, i * speed);
+          }
         }
-      }
-    } else if (sortingAlgo === "shellSort") {
-      const animatingArray = getShellSortAnimations(OriginalArray);
-      for (let i = 0; i < animatingArray.length; i++) {
-        const colorChange = i % 4 <= 1;
-        if (colorChange) {
-          const [barOneIdx, barTwoIdx] = animatingArray[i];
-          const barOneStyle = arrayBars[barOneIdx].style;
-          const barTwoStyle = arrayBars[barTwoIdx].style;
-          const color = i % 4 === 0 ? onCompareColor : initialColor;
-          setTimeout(() => {
-            barOneStyle.backgroundColor = color;
-            barTwoStyle.backgroundColor = color;
-          }, i * speed);
-        } else {
-          setTimeout(() => {
-            const [barOneIdx, newHeight] = animatingArray[i];
+        break;}
+      case "shellSort":{
+        const animatingArray = getShellSortAnimations(OriginalArray);
+        for (let i = 0; i < animatingArray.length; i++) {
+          const colorChange = i % 4 <= 1;
+          if (colorChange) {
+            const [barOneIdx, barTwoIdx] = animatingArray[i];
             const barOneStyle = arrayBars[barOneIdx].style;
-            barOneStyle.height = `${newHeight}px`;
-          }, i * speed);
+            const barTwoStyle = arrayBars[barTwoIdx].style;
+            const color = i % 4 === 0 ? onCompareColor : initialColor;
+            setTimeout(() => {
+              barOneStyle.backgroundColor = color;
+              barTwoStyle.backgroundColor = color;
+            }, i * speed);
+          } else {
+            setTimeout(() => {
+              const [barOneIdx, newHeight] = animatingArray[i];
+              const barOneStyle = arrayBars[barOneIdx].style;
+              barOneStyle.height = `${newHeight}px`;
+            }, i * speed);
+          }
         }
+        break;
       }
-    } else if (sortingAlgo === "combSort") {
-      const animatingArray = getCombSortAnimations(OriginalArray);
-      for (let i = 0; i < animatingArray.length; i++) {
-        const colorChange = i % 4 <= 1;
-        if (colorChange) {
-          const [barOneIdx, barTwoIdx] = animatingArray[i];
-          const barOneStyle = arrayBars[barOneIdx].style;
-          const barTwoStyle = arrayBars[barTwoIdx].style;
-          const color = i % 4 === 0 ? onCompareColor : initialColor;
-          setTimeout(() => {
-            barOneStyle.backgroundColor = color;
-            barTwoStyle.backgroundColor = color;
-          }, i * speed);
-        } else {
-          setTimeout(() => {
-            const [barOneIdx, newHeight] = animatingArray[i];
+      case "combSort":{
+        const animatingArray = getCombSortAnimations(OriginalArray);
+        for (let i = 0; i < animatingArray.length; i++) {
+          const colorChange = i % 4 <= 1;
+          if (colorChange) {
+            const [barOneIdx, barTwoIdx] = animatingArray[i];
             const barOneStyle = arrayBars[barOneIdx].style;
-            barOneStyle.height = `${newHeight}px`;
-          }, i * speed);
+            const barTwoStyle = arrayBars[barTwoIdx].style;
+            const color = i % 4 === 0 ? onCompareColor : initialColor;
+            setTimeout(() => {
+              barOneStyle.backgroundColor = color;
+              barTwoStyle.backgroundColor = color;
+            }, i * speed);
+          } else {
+            setTimeout(() => {
+              const [barOneIdx, newHeight] = animatingArray[i];
+              const barOneStyle = arrayBars[barOneIdx].style;
+              barOneStyle.height = `${newHeight}px`;
+            }, i * speed);
+          }
         }
-      }
-    } else if (sortingAlgo === "insertionSort") {
-      const animatingArray = getInsertionSortAnimations(OriginalArray);
-      for (let i = 0; i < animatingArray.length; i++) {
-        const colorChange = i % 4 <= 1;
-        if (colorChange) {
-          const [barOneIdx, barTwoIdx] = animatingArray[i];
-          const barOneStyle = arrayBars[barOneIdx].style;
-          const barTwoStyle = arrayBars[barTwoIdx].style;
-          const color = i % 4 === 0 ? onCompareColor : initialColor;
-          setTimeout(() => {
-            barOneStyle.backgroundColor = color;
-            barTwoStyle.backgroundColor = color;
-          }, i * speed);
-        } else {
-          setTimeout(() => {
-            const [barOneIdx, newHeight] = animatingArray[i];
+        break;}
+      case "insertionSort":{
+        const animatingArray = getInsertionSortAnimations(OriginalArray);
+        for (let i = 0; i < animatingArray.length; i++) {
+          const colorChange = i % 4 <= 1;
+          if (colorChange) {
+            const [barOneIdx, barTwoIdx] = animatingArray[i];
             const barOneStyle = arrayBars[barOneIdx].style;
-            barOneStyle.height = `${newHeight}px`;
-          }, i * speed);
+            const barTwoStyle = arrayBars[barTwoIdx].style;
+            const color = i % 4 === 0 ? onCompareColor : initialColor;
+            setTimeout(() => {
+              barOneStyle.backgroundColor = color;
+              barTwoStyle.backgroundColor = color;
+            }, i * speed);
+          } else {
+            setTimeout(() => {
+              const [barOneIdx, newHeight] = animatingArray[i];
+              const barOneStyle = arrayBars[barOneIdx].style;
+              barOneStyle.height = `${newHeight}px`;
+            }, i * speed);
+          }
         }
-      }
-    } else if (sortingAlgo === "selectionSort") {
-      const animatingArray = getSelectionSortAnimations(OriginalArray);
-      for (let i = 0; i < animatingArray.length; i++) {
-        const colorChange = i % 4 <= 1;
-        if (colorChange) {
-          const [barOneIdx, barTwoIdx] = animatingArray[i];
-          const barOneStyle = arrayBars[barOneIdx].style;
-          const barTwoStyle = arrayBars[barTwoIdx].style;
-          const color = i % 4 === 0 ? onCompareColor : initialColor;
-          setTimeout(() => {
-            barOneStyle.backgroundColor = color;
-            barTwoStyle.backgroundColor = color;
-          }, i * speed);
-        } else {
-          setTimeout(() => {
-            const [barOneIdx, newHeight] = animatingArray[i];
+        break;}
+      case "selectionSort":{
+        const animatingArray = getSelectionSortAnimations(OriginalArray);
+        for (let i = 0; i < animatingArray.length; i++) {
+          const colorChange = i % 4 <= 1;
+          if (colorChange) {
+            const [barOneIdx, barTwoIdx] = animatingArray[i];
             const barOneStyle = arrayBars[barOneIdx].style;
-            barOneStyle.height = `${newHeight}px`;
-          }, i * speed);
+            const barTwoStyle = arrayBars[barTwoIdx].style;
+            const color = i % 4 === 0 ? onCompareColor : initialColor;
+            setTimeout(() => {
+              barOneStyle.backgroundColor = color;
+              barTwoStyle.backgroundColor = color;
+            }, i * speed);
+          } else {
+            setTimeout(() => {
+              const [barOneIdx, newHeight] = animatingArray[i];
+              const barOneStyle = arrayBars[barOneIdx].style;
+              barOneStyle.height = `${newHeight}px`;
+            }, i * speed);
+          }
         }
-      }
-    } else if (sortingAlgo === "bubbleSort") {
-      const animatingArray = getBubbleSortAnimations(OriginalArray);
-      for (let i = 0; i < animatingArray.length; i++) {
-        const colorChange = i % 4 <= 1;
-        if (colorChange) {
-          const [barOneIdx, barTwoIdx] = animatingArray[i];
-          const barOneStyle = arrayBars[barOneIdx].style;
-          const barTwoStyle = arrayBars[barTwoIdx].style;
-          const color = i % 4 === 0 ? onCompareColor : initialColor;
-          setTimeout(() => {
-            barOneStyle.backgroundColor = color;
-            barTwoStyle.backgroundColor = color;
-          }, i * speed);
-        } else {
-          setTimeout(() => {
-            const [barOneIdx, newHeight] = animatingArray[i];
+        break;}
+      case "bubbleSort":{
+        const animatingArray = getBubbleSortAnimations(OriginalArray);
+        for (let i = 0; i < animatingArray.length; i++) {
+          const colorChange = i % 4 <= 1;
+          if (colorChange) {
+            const [barOneIdx, barTwoIdx] = animatingArray[i];
             const barOneStyle = arrayBars[barOneIdx].style;
-            barOneStyle.height = `${newHeight}px`;
-          }, i * speed);
+            const barTwoStyle = arrayBars[barTwoIdx].style;
+            const color = i % 4 === 0 ? onCompareColor : initialColor;
+            setTimeout(() => {
+              barOneStyle.backgroundColor = color;
+              barTwoStyle.backgroundColor = color;
+            }, i * speed);
+          } else {
+            setTimeout(() => {
+              const [barOneIdx, newHeight] = animatingArray[i];
+              const barOneStyle = arrayBars[barOneIdx].style;
+              barOneStyle.height = `${newHeight}px`;
+            }, i * speed);
+          }
         }
-      }
-    } else {
-      const animatingArray = getMergeSortAnimations(OriginalArray);
-      for (let i = 0; i < animatingArray.length; i++) {
-        const colorChange = i % 3 !== 2;
-        if (colorChange) {
-          const [barOneIdx, barTwoIdx] = animatingArray[i];
-          const barOneStyle = arrayBars[barOneIdx].style;
-          const barTwoStyle = arrayBars[barTwoIdx].style;
-          const color = i % 3 === 0 ? onCompareColor : initialColor;
-          setTimeout(() => {
-            barOneStyle.backgroundColor = color;
-            barTwoStyle.backgroundColor = color;
-          }, i * speed);
-        } else {
-          setTimeout(() => {
-            const [barOneIdx, newHeight] = animatingArray[i];
+        break;}
+      case "mergeSort":{
+        const animatingArray = getMergeSortAnimations(OriginalArray);
+        for (let i = 0; i < animatingArray.length; i++) {
+          const colorChange = i % 3 !== 2;
+          if (colorChange) {
+            const [barOneIdx, barTwoIdx] = animatingArray[i];
             const barOneStyle = arrayBars[barOneIdx].style;
-            barOneStyle.height = `${newHeight}px`;
-          }, i * speed);
+            const barTwoStyle = arrayBars[barTwoIdx].style;
+            const color = i % 3 === 0 ? onCompareColor : initialColor;
+            setTimeout(() => {
+              barOneStyle.backgroundColor = color;
+              barTwoStyle.backgroundColor = color;
+            }, i * speed);
+          } else {
+            setTimeout(() => {
+              const [barOneIdx, newHeight] = animatingArray[i];
+              const barOneStyle = arrayBars[barOneIdx].style;
+              barOneStyle.height = `${newHeight}px`;
+            }, i * speed);
+          }
         }
-      }
+        break;}
     }
   }
   render() {

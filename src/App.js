@@ -26,7 +26,6 @@ class App extends Component {
     this.setState({
       [name]: value
     });
-    this.handleReset();
   }
   handleReset() {
     const newArray = [];
