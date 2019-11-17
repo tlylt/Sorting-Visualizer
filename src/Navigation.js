@@ -7,8 +7,8 @@ class Navigation extends Component {
         <a className="navbar-brand" href="/">
           Sorting Visualizer
         </a>
-        <div className="navbar-nav">
-          <div className="nav-item mx-auto">
+        <div className="navbar-nav ml-auto">
+          <div className="nav-item ">
             <a
               className="nav-link "
               href="https://github.com/tlylt/Sorting-Visualizer.git"

@@ -9,6 +9,8 @@ import { getCocktailSortAnimations } from "./Algorithms/CocktailSort";
 import { getSlowSortAnimations } from "./Algorithms/SlowSort";
 import { getQuickSortFirstAnimations } from "./Algorithms/QuickSortFirst";
 import { getQuickSortLastAnimations } from "./Algorithms/QuickSortLast";
+import { getStrandSortAnimations } from "./Algorithms/StrandSort";
+import { getHeapSortAnimations } from "./Algorithms/HeapSort";
 
 class SortingPanel extends Component {
   constructor(props) {
@@ -26,6 +28,54 @@ class SortingPanel extends Component {
     const { onCompareColor, initialColor, speed, OriginalArray } = this.props;
     const arrayBars = document.getElementsByClassName("array-bar");
     switch (sortingAlgo) {
+      case "heapSort": {
+        const animatingArray = getHeapSortAnimations(OriginalArray);
+        for (let i = 0; i < animatingArray.length; i++) {
+          const colorChange = i % 4 <= 1;
+          if (colorChange) {
+            const [barOneIdx, barTwoIdx] = animatingArray[i];
+            const barOneStyle = arrayBars[barOneIdx].style;
+            const barTwoStyle = arrayBars[barTwoIdx].style;
+            const color = i % 4 === 0 ? onCompareColor : initialColor;
+            setTimeout(() => {
+              barOneStyle.backgroundColor = color;
+              barTwoStyle.backgroundColor = color;
+            }, i * speed);
+          } else {
+            setTimeout(() => {
+              const [barOneIdx, newHeight] = animatingArray[i];
+              const barOneStyle = arrayBars[barOneIdx].style;
+              barOneStyle.height = `${newHeight}px`;
+            }, i * speed);
+          }
+        }
+        break;
+      }
+      case "strandSort": {
+        console.log(OriginalArray);
+        const animatingArray = getStrandSortAnimations(OriginalArray);
+        console.log(animatingArray);
+        for (let i = 0; i < animatingArray.length; i++) {
+          const colorChange = i % 4 <= 1;
+          if (colorChange) {
+            const [barOneIdx, barTwoIdx] = animatingArray[i];
+            const barOneStyle = arrayBars[barOneIdx].style;
+            const barTwoStyle = arrayBars[barTwoIdx].style;
+            const color = i % 4 === 0 ? onCompareColor : initialColor;
+            setTimeout(() => {
+              barOneStyle.backgroundColor = color;
+              barTwoStyle.backgroundColor = color;
+            }, i * speed);
+          } else {
+            setTimeout(() => {
+              const [barOneIdx, newHeight] = animatingArray[i];
+              const barOneStyle = arrayBars[barOneIdx].style;
+              barOneStyle.height = `${newHeight}px`;
+            }, i * speed);
+          }
+        }
+        break;
+      }
       case "quickSortFirst": {
         const animatingArray = getQuickSortFirstAnimations(OriginalArray);
         for (let i = 0; i < animatingArray.length; i++) {
@@ -95,7 +145,7 @@ class SortingPanel extends Component {
         }
         break;
       }
-      case "cocktailSort":{
+      case "cocktailSort": {
         const animatingArray = getCocktailSortAnimations(OriginalArray);
         for (let i = 0; i < animatingArray.length; i++) {
           const colorChange = i % 4 <= 1;
@@ -116,8 +166,9 @@ class SortingPanel extends Component {
             }, i * speed);
           }
         }
-        break;}
-      case "shellSort":{
+        break;
+      }
+      case "shellSort": {
         const animatingArray = getShellSortAnimations(OriginalArray);
         for (let i = 0; i < animatingArray.length; i++) {
           const colorChange = i % 4 <= 1;
@@ -140,7 +191,7 @@ class SortingPanel extends Component {
         }
         break;
       }
-      case "combSort":{
+      case "combSort": {
         const animatingArray = getCombSortAnimations(OriginalArray);
         for (let i = 0; i < animatingArray.length; i++) {
           const colorChange = i % 4 <= 1;
@@ -161,8 +212,9 @@ class SortingPanel extends Component {
             }, i * speed);
           }
         }
-        break;}
-      case "insertionSort":{
+        break;
+      }
+      case "insertionSort": {
         const animatingArray = getInsertionSortAnimations(OriginalArray);
         for (let i = 0; i < animatingArray.length; i++) {
           const colorChange = i % 4 <= 1;
@@ -183,8 +235,9 @@ class SortingPanel extends Component {
             }, i * speed);
           }
         }
-        break;}
-      case "selectionSort":{
+        break;
+      }
+      case "selectionSort": {
         const animatingArray = getSelectionSortAnimations(OriginalArray);
         for (let i = 0; i < animatingArray.length; i++) {
           const colorChange = i % 4 <= 1;
@@ -205,8 +258,9 @@ class SortingPanel extends Component {
             }, i * speed);
           }
         }
-        break;}
-      case "bubbleSort":{
+        break;
+      }
+      case "bubbleSort": {
         const animatingArray = getBubbleSortAnimations(OriginalArray);
         for (let i = 0; i < animatingArray.length; i++) {
           const colorChange = i % 4 <= 1;
@@ -227,8 +281,9 @@ class SortingPanel extends Component {
             }, i * speed);
           }
         }
-        break;}
-      case "mergeSort":{
+        break;
+      }
+      case "mergeSort": {
         const animatingArray = getMergeSortAnimations(OriginalArray);
         for (let i = 0; i < animatingArray.length; i++) {
           const colorChange = i % 3 !== 2;
@@ -249,14 +304,15 @@ class SortingPanel extends Component {
             }, i * speed);
           }
         }
-        break;}
+        break;
+      }
     }
   }
   render() {
     return (
       <div className="container mb-3">
         <div className="row shadow-sm justify-content-center pb-2">
-          <div className="col-2">
+          <div className="col-md-2">
             <div className="row justify-content-center">
               <label>Array Size</label>
               <input
@@ -292,7 +348,7 @@ class SortingPanel extends Component {
             </div>
           </div>
           <div className="col-auto">
-            <div className="row align-items-start ml-2 my-4">
+            <div className="row align-items-start justify-content-center ml-2 my-4">
               <div className="btn-group-sm btn-group-vertical">
                 <button
                   type="button"
@@ -301,6 +357,14 @@ class SortingPanel extends Component {
                   onClick={e => this.handleSort(e)}
                 >
                   Merge Sort
+                </button>
+                <button
+                  type="button"
+                  className="btn btn-outline-secondary"
+                  value="heapSort"
+                  onClick={e => this.handleSort(e)}
+                >
+                  Heap Sort
                 </button>
                 <button
                   type="button"
@@ -354,6 +418,14 @@ class SortingPanel extends Component {
                 >
                   Shell Sort
                 </button>
+                {/* <button
+                  type="button"
+                  className="btn btn-outline-secondary"
+                  value="strandSort"
+                  onClick={e => this.handleSort(e)}
+                >
+                  Strand Sort
+                </button> */}
               </div>
               <div className="btn-group-sm btn-group-vertical" role="group">
                 <button
